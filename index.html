@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giveaway Countdown</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="pattern">
+      <img src="./assets/images/logo.png" alt="logo pattern">
+    </div>
+
+    <div class="logo">
+      <img src="./assets/images/logo.png" alt="logo">
+    </div>
+
+    <div class="giveaway-card">
+
+      <div class="img-box">
+        <img src="./assets/images/smart.jpg" alt="">
+      </div>
+
+      <div class="content-box">
+        <div class="heading">
+          <h1>SMART-0-THON 2023 BY IEEE PHOTONICS SOCIETY</h1>
+          <P>MAKE-A-THON ENDS ON , 26th June 2023 4:00pm</P>
+          <p>Join us for an exciting event "SMART-O-THON" in partnership with Coding Blocks. A 2-Day event with an exciting coding round and Make-a-thon.</p>
+        </div>
+
+        <div class="giveaway-detail">
+          <p></p>
+        </div>
+
+        <div class="countdown-box">
+          <div class="days">
+            <div class="number" id="days">0</div>
+            <div class="label">DAYS</div>
+          </div>
+          <div class="hours">
+            <div class="number" id="hours">0</div>
+            <div class="label">HOURS</div>
+          </div>
+          <div class="mins">
+            <div class="number" id="mins">0</div>
+            <div class="label">MINS</div>
+          </div>
+          <div class="secs">
+            <div class="number" id="secs">0</div>
+            <div class="label">SECS</div>
+          </div>
+        </div>
+        
+        
+        
+      </div>
+
+    </div>
+
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var time = {
+        days: document.getElementById("days"),
+        hours: document.getElementById("hours"),
+        mins: document.getElementById("mins"),
+        secs: document.getElementById("secs")
+      };
+
+      // Set the countdown time (in hours and days)
+      var countdownDays = 0;
+      var countdownHours = 12;
+
+      var endDateTime = new Date();
+      endDateTime.setDate(endDateTime.getDate() + countdownDays);
+      endDateTime.setHours(endDateTime.getHours() + countdownHours);
+      endDateTime.setMinutes(0);
+      endDateTime.setSeconds(0);
+
+      var timeCapture = function () {
+        var currentTime = new Date().getTime();
+        var timeRemaining = endDateTime.getTime() - currentTime;
+
+        if (timeRemaining > 0) {
+          var seconds = Math.floor((timeRemaining / 1000) % 60);
+          var minutes = Math.floor((timeRemaining / 1000 / 60) % 60);
+          var hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+          var days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+
+          time.secs.innerText = seconds < 10 ? '0' + seconds : seconds;
+          time.mins.innerText = minutes < 10 ? '0' + minutes : minutes;
+          time.hours.innerText = hours < 10 ? '0' + hours : hours;
+          time.days.innerText = days < 10 ? '0' + days : days;
+
+          setTimeout(timeCapture, 1000);
+        }
+      };
+
+      timeCapture();
+    });
+  </script>
+
+  <script src="./assets/js/app.js"></script>
+
+</body>
+
+</html>
